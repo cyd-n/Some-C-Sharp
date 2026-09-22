@@ -1,19 +1,18 @@
 ﻿using System;
 
-class Program
-{
+class Program {
     public static char[,] gameField =  {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
 
-    public static void Main(string[] arg)
-    {
+    public static void Main(string[] arg) {
         DrawField();
         
         PlayerTurn();
         
     }
 
-    private static void PlayerTurn()
-    {
+    private static void PlayerTurn() {
+        InitScreen();
+
         int x = 0;
         int y = 0;
 
@@ -26,10 +25,28 @@ class Program
             else if(info.Key == ConsoleKey.W) y = (y <= 0) ? 2 : y -= 1;
 
             Console.Write("X: " + x + ",Y: " + y);
+
+            char oldTile = gameField[y,x];
+            gameField[y,x] = '▓';
+
+            DrawField();
+
+            gameField[y,x] = oldTile;
         }
     }
 
+    private static void InitScreen() {
+        char oldTile = gameField[0,0];
+        gameField[0,0] = '▓';
+
+        DrawField();
+
+        gameField[0,0] = oldTile;
+    }
+
     private static void DrawField() {
+        Console.Clear();
+
         Console.WriteLine("╔═╦═╦═╗");
         Console.WriteLine($"║{gameField[0,0]}║{gameField[0,1]}║{gameField[0,2]}║");
         Console.WriteLine("╠═╬═╬═╣");

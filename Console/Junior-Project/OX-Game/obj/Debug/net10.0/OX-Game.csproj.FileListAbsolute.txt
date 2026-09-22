@@ -12,3 +12,4 @@
 /home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.pdb
 /home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.genruntimeconfig.cache
 /home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/ref/OX-Game.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.sourcelink.json
