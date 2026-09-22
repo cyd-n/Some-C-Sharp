@@ -1,0 +1,14 @@
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.GeneratedMSBuildEditorConfig.editorconfig
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.AssemblyInfoInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.AssemblyInfo.cs
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.csproj.CoreCompileInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/bin/Debug/net10.0/OX-Game
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/bin/Debug/net10.0/OX-Game.deps.json
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/bin/Debug/net10.0/OX-Game.runtimeconfig.json
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/bin/Debug/net10.0/OX-Game.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/bin/Debug/net10.0/OX-Game.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/refint/OX-Game.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/OX-Game.genruntimeconfig.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/OX-Game/obj/Debug/net10.0/ref/OX-Game.dll
