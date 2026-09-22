@@ -1,13 +1,15 @@
 ﻿using System;
 
 class Program {
-    public static char[,] gameField =  {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+    private static char[,] gameField =  {{' ', ' ', ' '}, {' ', ' ', ' '}, {' ', ' ', ' '}};
+    private static bool running = true, playerTurn = true;
 
     public static void Main(string[] arg) {
-        DrawField();
-        
-        PlayerTurn();
-        
+        while (running) {
+            PlayerTurn();
+            DrawField();
+            playerTurn = true;
+        }
     }
 
     private static void PlayerTurn() {
@@ -16,13 +18,18 @@ class Program {
         int x = 0;
         int y = 0;
 
-        while(true){
+        while(playerTurn){
             ConsoleKeyInfo info = Console.ReadKey();
 
-            if(info.Key == ConsoleKey.D) x = (x >= 2) ? 0 : x += 1;
-            else if(info.Key == ConsoleKey.A) x = (x <= 0) ? 2 : x -= 1;
-            else if(info.Key == ConsoleKey.S) y = (y >= 2) ? 0 : y += 1;
-            else if(info.Key == ConsoleKey.W) y = (y <= 0) ? 2 : y -= 1;
+            if(info.Key == ConsoleKey.D || info.Key == ConsoleKey.RightArrow) x = (x >= 2) ? 0 : x += 1;
+            else if(info.Key == ConsoleKey.A || info.Key == ConsoleKey.LeftArrow) x = (x <= 0) ? 2 : x -= 1;
+            else if(info.Key == ConsoleKey.S || info.Key == ConsoleKey.DownArrow) y = (y >= 2) ? 0 : y += 1;
+            else if(info.Key == ConsoleKey.W || info.Key == ConsoleKey.UpArrow) y = (y <= 0) ? 2 : y -= 1;
+            else if(info.Key == ConsoleKey.Enter && gameField[y,x] == ' ') {
+                gameField[y,x] = 'X';
+                playerTurn = false;
+                return;
+            }
 
             Console.Write("X: " + x + ",Y: " + y);
 
