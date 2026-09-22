@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OX-Game")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63d57f6c8922f9ba73f83a10b597d739bfbffb3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c644dccc54b1c7786a820e8b8b421e74e4876bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("OX-Game")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OX-Game")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
