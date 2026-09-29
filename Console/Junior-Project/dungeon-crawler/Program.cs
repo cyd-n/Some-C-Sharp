@@ -7,6 +7,8 @@ class Program
 {
     public static Charater player = new Charater("user", '@', new Vector2(5,5));
 
+    public static Charater snake = new Charater("Snake", 's', new Vector2(9,5));
+
     public static void Main(string[] arg) {
         while(true) {
             Console.Clear();
@@ -14,6 +16,7 @@ class Program
             char[,] map = DrawRoom(new Vector2(20, 10));
 
             map[(int)player.pos.Y, (int)player.pos.X] = player.icon;
+            map[(int)snake.pos.Y, (int)snake.pos.X] = snake.icon;
 
             foreach(char mapChar in map) {
                 Console.Write(mapChar);
