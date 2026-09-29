@@ -30,9 +30,9 @@ class Program
             if (_map[(int)playerPos.Y - 1, (int)playerPos.X] != '#') { playerPos.Y--; }
         } else if(keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow) {
             if (_map[(int)playerPos.Y + 1, (int)playerPos.X] != '#') { playerPos.Y++; }
-        } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.RightArrow) {
+        } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.LeftArrow) {
             if (_map[(int)playerPos.Y, (int)playerPos.X - 1] != '#') { playerPos.X--; }
-        } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.LeftArrow) {
+        } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.RightArrow) {
             if (_map[(int)playerPos.Y, (int)playerPos.X + 1] != '#') { playerPos.X++; }
         }
     }
