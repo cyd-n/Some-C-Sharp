@@ -8,12 +8,32 @@ class Program
     public static Vector2 playerPos = new Vector2(5,5);
 
     public static void Main(string[] arg) {
-        char[,] map = DrawRoom(new Vector2(20, 10));
+        while(true) {
+            Console.Clear();
 
-        map[(int)playerPos.Y, (int)playerPos.X] ='@';
+            char[,] map = DrawRoom(new Vector2(20, 10));
 
-        foreach(char mapChar in map) {
-            Console.Write(mapChar);
+            map[(int)playerPos.Y, (int)playerPos.X] ='@';
+
+            foreach(char mapChar in map) {
+                Console.Write(mapChar);
+            }
+
+            MovePlayer(map);
+        }
+    }
+
+    public static void MovePlayer(char[,] _map) {
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+
+        if(keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow) {
+            if (_map[(int)playerPos.Y - 1, (int)playerPos.X] != '#') { playerPos.Y--; }
+        } else if(keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow) {
+            if (_map[(int)playerPos.Y + 1, (int)playerPos.X] != '#') { playerPos.Y++; }
+        } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.RightArrow) {
+            if (_map[(int)playerPos.Y, (int)playerPos.X - 1] != '#') { playerPos.X--; }
+        } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.LeftArrow) {
+            if (_map[(int)playerPos.Y, (int)playerPos.X + 1] != '#') { playerPos.X++; }
         }
     }
 
