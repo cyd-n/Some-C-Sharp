@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "dungeon-crawler/1.0.0": {
+        "runtime": {
+          "dungeon-crawler.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "dungeon-crawler/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

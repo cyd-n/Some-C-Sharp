@@ -1,0 +1,15 @@
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.deps.json
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.runtimeconfig.json
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.GeneratedMSBuildEditorConfig.editorconfig
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfoInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfo.cs
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.csproj.CoreCompileInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.sourcelink.json
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/refint/dungeon-crawler.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.genruntimeconfig.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/ref/dungeon-crawler.dll
