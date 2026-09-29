@@ -1,11 +1,11 @@
 ﻿using System;
-using System;
 using System.Text;
-using System.Numerics; 
+using System.Numerics;
+using dungeon_crawler;
 
 class Program
 {
-    public static Vector2 playerPos = new Vector2(5,5);
+    public static Charater player = new Charater("user", '@', new Vector2(5,5));
 
     public static void Main(string[] arg) {
         while(true) {
@@ -13,13 +13,14 @@ class Program
 
             char[,] map = DrawRoom(new Vector2(20, 10));
 
-            map[(int)playerPos.Y, (int)playerPos.X] ='@';
+            map[(int)player.pos.Y, (int)player.pos.X] = player.icon;
 
             foreach(char mapChar in map) {
                 Console.Write(mapChar);
             }
 
             MovePlayer(map);
+            
         }
     }
 
@@ -27,14 +28,16 @@ class Program
         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
         if(keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow) {
-            if (_map[(int)playerPos.Y - 1, (int)playerPos.X] != '#') { playerPos.Y--; }
+            if (_map[(int)player.pos.Y - 1, (int)player.pos.X] != '#') { player.pos.Y--; }
         } else if(keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow) {
-            if (_map[(int)playerPos.Y + 1, (int)playerPos.X] != '#') { playerPos.Y++; }
+            if (_map[(int)player.pos.Y + 1, (int)player.pos.X] != '#') { player.pos.Y++; }
         } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.LeftArrow) {
-            if (_map[(int)playerPos.Y, (int)playerPos.X - 1] != '#') { playerPos.X--; }
+            if (_map[(int)player.pos.Y, (int)player.pos.X - 1] != '#') { player.pos.X--; }
         } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.RightArrow) {
-            if (_map[(int)playerPos.Y, (int)playerPos.X + 1] != '#') { playerPos.X++; }
+            if (_map[(int)player.pos.Y, (int)player.pos.X + 1] != '#') { player.pos.X++; }
         }
+
+        
     }
 
     public static char[,] DrawRoom(Vector2 size)  {
