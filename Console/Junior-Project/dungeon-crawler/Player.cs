@@ -3,8 +3,10 @@ using System.Numerics;
 namespace dungeon_crawler
 {
     public class Player : Charater {
-        public Player(string _name, char _icon, Vector2 _pos, float _hp, float _damage) : base(_name, _icon, _pos, _hp, _damage) {
+        public static Player instance {get; private set;}
 
+        public Player(string _name, char _icon, Vector2 _pos, float _hp, float _damage) : base(_name, _icon, _pos, _hp, _damage) {
+            if (instance != null) { instance = this; }
         }
 
         public override void Move(char[,] _map) {

@@ -15,8 +15,8 @@ class Program
 
             char[,] map = DrawRoom(new Vector2(20, 10));
 
-            map[(int)snake.pos.Y, (int)snake.pos.X] = snake.icon;
             map[(int)player.pos.Y, (int)player.pos.X] = player.icon;
+            map[(int)snake.pos.Y, (int)snake.pos.X] = snake.icon;
 
             foreach(char mapChar in map) {
                 Console.Write(mapChar);

@@ -16,13 +16,13 @@ namespace dungeon_crawler
                     if(ValidateMovement(_map[(int)pos.Y - 1, (int)pos.X])) { pos.Y--; }
                     break;
                 case 1:
-                    if(ValidateMovement(_map[(int)pos.X - 1, (int)pos.X])) { pos.X--; }
+                    if(ValidateMovement(_map[(int)pos.Y, (int)pos.X - 1])) { pos.X--; }
                     break;
                 case 2:
                     if(ValidateMovement(_map[(int)pos.Y + 1, (int)pos.X])) { pos.Y++; }
                     break;
                 case 3:
-                    if(ValidateMovement(_map[(int)pos.X + 1, (int)pos.X])) { pos.X++; }
+                    if(ValidateMovement(_map[(int)pos.Y, (int)pos.X + 1])) { pos.X++; }
                     break;
                 case 4:
                     break;
@@ -34,8 +34,8 @@ namespace dungeon_crawler
                 return false;
             } else if(_nextWalkPos == '.') {
                 return true;
-            } else if(_nextWalkPos == '@') { // cant can player icon yet
-                Attack(null); // cant find player yet
+            } else if(_nextWalkPos == Player.instance.icon) { // cant can player icon yet
+                Attack(Player.instance); // cant find player yet
                 return false;
             }
 
