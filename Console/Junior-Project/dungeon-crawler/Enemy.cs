@@ -9,20 +9,22 @@ namespace dungeon_crawler
 
         public override void Move(char[,] _map) {
             Random rand = new Random();
-            int dire = rand.Next(0,4);
+            int dire = rand.Next(0,5);
 
             switch (dire) {
                 case 0:
                     if(ValidateMovement(_map[(int)pos.Y - 1, (int)pos.X])) { pos.Y--; }
                     break;
                 case 1:
-                    if(ValidateMovement(_map[(int)pos.Y - 1, (int)pos.X])) { pos.X--; }
+                    if(ValidateMovement(_map[(int)pos.X - 1, (int)pos.X])) { pos.X--; }
                     break;
                 case 2:
-                    if(ValidateMovement(_map[(int)pos.Y - 1, (int)pos.X])) { pos.Y++; }
+                    if(ValidateMovement(_map[(int)pos.Y + 1, (int)pos.X])) { pos.Y++; }
                     break;
                 case 3:
-                    if(ValidateMovement(_map[(int)pos.Y - 1, (int)pos.X])) { pos.X++; }
+                    if(ValidateMovement(_map[(int)pos.X + 1, (int)pos.X])) { pos.X++; }
+                    break;
+                case 4:
                     break;
             }
         }
