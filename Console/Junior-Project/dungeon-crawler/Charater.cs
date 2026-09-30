@@ -17,6 +17,14 @@ namespace dungeon_crawler
             damagePoints = _damage;
         }
 
+        public virtual void Move(char[,] _map) {
+            
+        }
+
+        public virtual bool ValidateMovement(char _nextWalkPos) {
+            return false;
+        }
+
         public void Attack(Charater _char) {
             _char.TakeDamage(damagePoints);
         }

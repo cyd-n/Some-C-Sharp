@@ -5,9 +5,9 @@ using dungeon_crawler;
 
 class Program
 {
-    public static Charater player = new Charater("user", '@', new Vector2(5,5), 100, 13);
+    public static Player player = new Player("user", '@', new Vector2(5,5), 100, 13);
 
-    public static Charater snake = new Charater("Snake", 's', new Vector2(9,5), 30, 3);
+    public static Enemy snake = new Enemy("Snake", 's', new Vector2(9,5), 30, 3);
 
     public static void Main(string[] arg) {
         while(true) {
@@ -22,38 +22,11 @@ class Program
                 Console.Write(mapChar);
             }
 
-            MovePlayer(map);
+            player.Move(map);
+            snake.Move(map);
             
         }
     }
-
-    public static void MovePlayer(char[,] _map) {
-        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
-        if(keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow) {
-            if (ValidateMovement(_map[(int)player.pos.Y - 1, (int)player.pos.X])) { player.pos.Y--; }
-        } else if(keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow) {
-            if (ValidateMovement(_map[(int)player.pos.Y + 1, (int)player.pos.X])) { player.pos.Y++; }
-        } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.LeftArrow) {
-            if (ValidateMovement(_map[(int)player.pos.Y, (int)player.pos.X - 1])) { player.pos.X--; }
-        } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.RightArrow) {
-            if (ValidateMovement(_map[(int)player.pos.Y, (int)player.pos.X + 1])) { player.pos.X++; }
-        }
-    }
-
-    public static bool ValidateMovement(char _nextWalkPos) {
-        if(_nextWalkPos == '#') {
-            return false;
-        } else if(_nextWalkPos == '.') {
-            return true;
-        } else if(_nextWalkPos == snake.icon) {
-            player.Attack(snake);
-            return false;
-        }
-
-        return true;
-    }
-
 
     public static char[,] DrawRoom(Vector2 size)  {
         int width = (int)size.X + 1;
