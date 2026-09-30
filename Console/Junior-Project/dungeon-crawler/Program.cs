@@ -5,9 +5,9 @@ using dungeon_crawler;
 
 class Program
 {
-    public static Charater player = new Charater("user", '@', new Vector2(5,5));
+    public static Charater player = new Charater("user", '@', new Vector2(5,5), 100, 13);
 
-    public static Charater snake = new Charater("Snake", 's', new Vector2(9,5));
+    public static Charater snake = new Charater("Snake", 's', new Vector2(9,5), 30, 3);
 
     public static void Main(string[] arg) {
         while(true) {
@@ -15,8 +15,8 @@ class Program
 
             char[,] map = DrawRoom(new Vector2(20, 10));
 
-            map[(int)player.pos.Y, (int)player.pos.X] = player.icon;
             map[(int)snake.pos.Y, (int)snake.pos.X] = snake.icon;
+            map[(int)player.pos.Y, (int)player.pos.X] = player.icon;
 
             foreach(char mapChar in map) {
                 Console.Write(mapChar);
@@ -31,17 +31,29 @@ class Program
         ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
         if(keyInfo.Key == ConsoleKey.W || keyInfo.Key == ConsoleKey.UpArrow) {
-            if (_map[(int)player.pos.Y - 1, (int)player.pos.X] != '#') { player.pos.Y--; }
+            if (ValidateMovement(_map[(int)player.pos.Y - 1, (int)player.pos.X])) { player.pos.Y--; }
         } else if(keyInfo.Key == ConsoleKey.S || keyInfo.Key == ConsoleKey.DownArrow) {
-            if (_map[(int)player.pos.Y + 1, (int)player.pos.X] != '#') { player.pos.Y++; }
+            if (ValidateMovement(_map[(int)player.pos.Y + 1, (int)player.pos.X])) { player.pos.Y++; }
         } else if(keyInfo.Key == ConsoleKey.A || keyInfo.Key == ConsoleKey.LeftArrow) {
-            if (_map[(int)player.pos.Y, (int)player.pos.X - 1] != '#') { player.pos.X--; }
+            if (ValidateMovement(_map[(int)player.pos.Y, (int)player.pos.X - 1])) { player.pos.X--; }
         } else if(keyInfo.Key == ConsoleKey.D || keyInfo.Key == ConsoleKey.RightArrow) {
-            if (_map[(int)player.pos.Y, (int)player.pos.X + 1] != '#') { player.pos.X++; }
+            if (ValidateMovement(_map[(int)player.pos.Y, (int)player.pos.X + 1])) { player.pos.X++; }
+        }
+    }
+
+    public static bool ValidateMovement(char _nextWalkPos) {
+        if(_nextWalkPos == '#') {
+            return false;
+        } else if(_nextWalkPos == '.') {
+            return true;
+        } else if(_nextWalkPos == snake.icon) {
+            player.Attack(snake);
+            return false;
         }
 
-        
+        return true;
     }
+
 
     public static char[,] DrawRoom(Vector2 size)  {
         int width = (int)size.X + 1;
