@@ -34,8 +34,8 @@ namespace dungeon_crawler
                 return false;
             } else if(_nextWalkPos == '.') {
                 return true;
-            } else if(_nextWalkPos == Player.instance.icon) { // cant can player icon yet
-                Attack(Player.instance); // cant find player yet
+            } else if(_nextWalkPos == '@') { 
+                Attack(Player.instance); 
                 return false;
             }
 

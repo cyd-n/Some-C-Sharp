@@ -1,6 +1,6 @@
 using System.Numerics; 
 
-namespace dungeon_crawler
+namespace dungeon_crawler.Game
 {
     public class Player : Charater {
         public static Player instance {get; private set;}
@@ -29,7 +29,7 @@ namespace dungeon_crawler
             } else if(_nextWalkPos == '.') {
                 return true;
             } else if(_nextWalkPos == 's') { // cant can enemy icon yet
-                Attack(null); // cant find enemy yet
+               // Attack(null); // cant find enemy yet
                 return false;
             }
 

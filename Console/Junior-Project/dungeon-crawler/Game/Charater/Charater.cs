@@ -1,8 +1,9 @@
-using System.Numerics; 
+using System.Numerics;
+using dungeon_crawler.Game;
 
 namespace dungeon_crawler
 {
-    public class Charater {
+    public class Charater : IObj {
         public string name {get; private set;}
         public char icon {get; private set;}
         public float hpPoints {get; private set;}
@@ -15,6 +16,18 @@ namespace dungeon_crawler
             pos = _pos;
             hpPoints =_hp;
             damagePoints = _damage;
+        }
+
+        public void Start() {
+            
+        }
+
+        public void Update() {
+            
+        }
+
+        public void Draw() {
+            
         }
 
         public virtual void Move(char[,] _map) {
@@ -31,6 +44,8 @@ namespace dungeon_crawler
 
         public void TakeDamage(float _damage) {
             hpPoints -= _damage;
+
+            Console.WriteLine(hpPoints);
 
             if(hpPoints < 0) {
                 Died();
