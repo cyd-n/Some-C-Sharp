@@ -7,9 +7,23 @@ using dungeon_crawler.Game.GameObj;
 class Program
 {
     public static void Main(string[] arg) {  
-        List<GameObj> gameObj = new List<GameObj>();
+        List<GameObj> gameObjs = new List<GameObj>();
 
-        gameObj.Add()
+        gameObjs.Add(new GameObj("Player", "Player", new Vector2(4,7)));
+
+        foreach(GameObj gO in gameObjs) {
+            gO.Start();
+        }
+
+        while (true) { // have no delta time
+            foreach(GameObj gO in gameObjs) {
+                gO.Update();
+            }
+
+            foreach(GameObj gO in gameObjs) {
+                gO.Draw();
+            }
+        }
     }
 }
 
