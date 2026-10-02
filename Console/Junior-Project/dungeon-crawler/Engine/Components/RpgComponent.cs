@@ -5,6 +5,7 @@ namespace dungeon_crawler.Game.GameObj
 
         public abstract void Start();
         public abstract void Update();
+        public abstract void Input(ConsoleKeyInfo _key);
         public abstract void Draw();
     }
 }

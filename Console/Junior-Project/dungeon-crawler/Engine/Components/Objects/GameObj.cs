@@ -1,8 +1,9 @@
 using System.ComponentModel;
 using System.Numerics;
 using System.Reflection.Metadata;
+using dungeon_crawler.Game.GameObj;
 
-namespace dungeon_crawler.Game.GameObj {
+namespace dungeon_crawler.Engine.Components.Objects {
     public class GameObj {
         public string name {get; set;}
         public string tag {get; set;}
@@ -46,6 +47,15 @@ namespace dungeon_crawler.Game.GameObj {
 
             foreach(RpgComponent rpgComp in components) {
                 rpgComp.Update();
+            }
+        }
+
+        public void Input(ConsoleKeyInfo _key) {
+            if (!active)
+                return;
+
+            foreach(RpgComponent rpgComp in components) {
+                rpgComp.Input(_key);
             }
         }
 

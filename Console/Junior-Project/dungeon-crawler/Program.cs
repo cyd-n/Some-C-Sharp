@@ -6,11 +6,13 @@ using dungeon_crawler.Game.GameObj;
 using dungeon_crawler.Game;
 using dungeon_crawler.Engine;
 using dungeon_crawler.Engine.Components;
+using dungeon_crawler.Engine.Components.Objects;
 
 class Program
 {
     public static void Main(string[] arg) {  
         Renderer renderer = new Renderer(30,15);
+        InputManager input = new InputManager();
 
         List<GameObj> gameObjs = new List<GameObj>();
 
@@ -86,7 +88,9 @@ class Program
                 gO.Draw();
             }
 
-            renderer.DrawOnScreen();
+            Renderer.instence.DrawOnScreen();
+
+            InputManager.instence.WaitForInput(gameObjs);
         }
     }
 }
