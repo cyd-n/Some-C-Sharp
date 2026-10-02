@@ -3,13 +3,21 @@ using System.Text;
 using System.Numerics;
 using dungeon_crawler;
 using dungeon_crawler.Game.GameObj;
+using dungeon_crawler.Game;
 
 class Program
 {
     public static void Main(string[] arg) {  
         List<GameObj> gameObjs = new List<GameObj>();
 
-        gameObjs.Add(new GameObj("Player", "Player", new Vector2(4,7)));
+        GameObj player = new GameObj("Player");
+
+        AsciiComponent ascii = new AsciiComponent();
+        ascii.SetIcon('@');
+
+        player.AddComponent(ascii);
+
+        gameObjs.Add(player);
 
         foreach(GameObj gO in gameObjs) {
             gO.Start();
