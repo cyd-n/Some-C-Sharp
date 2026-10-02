@@ -29,6 +29,8 @@ namespace dungeon_crawler.Engine.Components
 
         public override void Update() { }
 
+        public override void Input(ConsoleKeyInfo _key) { }
+
         public override void Draw() {
             Renderer.instence.DrawOnBuffer(position, map);
         }

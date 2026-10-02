@@ -5,26 +5,14 @@ using dungeon_crawler.Engine;
 using dungeon_crawler.Game.GameObj;
 
 namespace dungeon_crawler.Game {
-    public class AsciiComponent : RpgComponent
+    public class PlayerComponent : RpgComponent
     {
         // Properties
         // need Color 
-        public char icon { get; private set; }
-        public Vector2 position { get; set; }
-        public int sortingOrder { get; set; }
-        public bool enabled { get; set; }
 
         // Methods
-        public AsciiComponent() {
+        public PlayerComponent() {
             //position = GameObject.position;
-        }
-
-        public void SetIcon(char _icon) {
-            icon = (_icon != null || _icon != ' ') ? _icon : 'O';
-        }
-
-        public void SetPosition(Vector2 _position) {
-            position = new Vector2(position.X + GameObject.position.X, position.Y + GameObject.position.Y);
         }
 
         public override void Start(){ }
@@ -36,7 +24,7 @@ namespace dungeon_crawler.Game {
         }
 
         public override void Draw() {
-            Renderer.instence.DrawOnBuffer(GameObject.position, new char[,] {{icon}});
+            
         }
     }
 }
