@@ -7,6 +7,7 @@ namespace dungeon_crawler.Game.GameObj {
     public class AsciiComponent : RpgComponent
     {
         // Properties
+        // need Color 
         public char icon { get; private set; }
         public Vector2 position { get; set; }
         public int sortingOrder { get; set; }
@@ -25,13 +26,9 @@ namespace dungeon_crawler.Game.GameObj {
             position = new Vector2(position.X + GameObject.position.X, position.Y + GameObject.position.Y);
         }
 
-        public override void Start(){
-                
-        }
+        public override void Start(){ }
 
-        public override void Update() {
-                
-        }
+        public override void Update() { }
 
         public override void Draw() {
             Renderer.instence.DrawOnBuffer(position, new char[,] {{icon}});
