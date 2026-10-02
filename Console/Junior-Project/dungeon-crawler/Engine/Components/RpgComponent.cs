@@ -1,7 +1,9 @@
-namespace dungeon_crawler.Game.GameObj
+using dungeon_crawler.Engine.Components.Objects;
+
+namespace dungeon_crawler.Engine.Components
 {
     public abstract class RpgComponent {
-        public GameObj GameObject { get; internal set; }
+        public GameObj gameObject { get; set; }
 
         public abstract void Start();
         public abstract void Update();

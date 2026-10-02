@@ -1,5 +1,5 @@
 using System.Numerics;
-using dungeon_crawler.Game.GameObj;
+using dungeon_crawler.Engine.Components.Objects;
 
 namespace dungeon_crawler.Engine.Components
 {
@@ -19,10 +19,6 @@ namespace dungeon_crawler.Engine.Components
 
         public void SetMap(char[,] _map) {
             map = _map;
-        }
-
-        public void SetPosition(Vector2 _position) {
-            position = new Vector2(position.X + GameObject.position.X, position.Y + GameObject.position.Y);
         }
 
         public override void Start(){ }

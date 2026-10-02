@@ -1,12 +1,9 @@
 using System.Numerics;
 using dungeon_crawler.Engine.Components.Objects;
-using dungeon_crawler.Game.GameObj;
 
 namespace dungeon_crawler.Engine {
     public class InputManager {
         public static InputManager instence; 
-
-        private ConsoleKeyInfo currentKey;
 
         public InputManager() {
             if(instence == null) {
@@ -14,12 +11,14 @@ namespace dungeon_crawler.Engine {
             }
         }
 
-        public void WaitForInput(List<GameObj> _gameObjs) {
-            currentKey = Console.ReadKey(true);
+        public void WaitForInput(List<GameObj> gameObjs) {
+            ConsoleKeyInfo key = Console.ReadKey(true);
 
-            foreach(GameObj gO in _gameObjs) {
-                gO.Input(currentKey);
+            foreach (GameObj gameObj in gameObjs) {
+                gameObj.Input(key);
             }
+
+            return;
         }
     }
 }

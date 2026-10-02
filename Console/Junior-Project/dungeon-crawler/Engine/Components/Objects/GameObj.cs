@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Numerics;
 using System.Reflection.Metadata;
-using dungeon_crawler.Game.GameObj;
+using dungeon_crawler.Engine.Components.Objects;
 
 namespace dungeon_crawler.Engine.Components.Objects {
     public class GameObj {
@@ -19,7 +19,7 @@ namespace dungeon_crawler.Engine.Components.Objects {
         }
 
         public T AddComponent<T>(T _component) where T : RpgComponent {
-            _component.GameObject = this;
+            _component.gameObject = this;
             components.Add(_component);
 
             return _component;

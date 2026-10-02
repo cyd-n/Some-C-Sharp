@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Text;
 using System.Numerics;
-using dungeon_crawler;
-using dungeon_crawler.Game.GameObj;
-using dungeon_crawler.Game;
 using dungeon_crawler.Engine;
 using dungeon_crawler.Engine.Components;
+using dungeon_crawler.Engine.Components.Art;
 using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Game;
 
 class Program
 {
@@ -24,6 +23,7 @@ class Program
         ascii.SetIcon('@');
 
         player.AddComponent(ascii);
+        player.AddComponent(new PlayerComponent());
 
         // Map
         GameObj map = new GameObj("Player");
@@ -79,18 +79,18 @@ class Program
             gO.Start();
         }        
 
-        while (true) { // have no delta time
-            foreach(GameObj gO in gameObjs) {
-                gO.Update();
-            }
-
-            foreach(GameObj gO in gameObjs) {
-                gO.Draw();
-            }
-
-            Renderer.instence.DrawOnScreen();
-
+        while (true) {
             InputManager.instence.WaitForInput(gameObjs);
+
+            foreach (GameObj gameObj in gameObjs) {
+                gameObj.Update();
+            }
+
+            foreach (GameObj gameObj in gameObjs) {
+                gameObj.Draw();
+            }
+
+            renderer.DrawOnScreen();
         }
     }
 }
