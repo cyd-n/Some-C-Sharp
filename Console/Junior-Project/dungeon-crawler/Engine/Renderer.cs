@@ -33,10 +33,10 @@ namespace dungeon_crawler.Engine {
                     int bufferY = posY + y;
                     int bufferX = posX + x;
 
-                    if (bufferY >= 0 && bufferY < height &&
-                        bufferX >= 0 && bufferX < witdh)
-                    {
-                        buffer[bufferY, bufferX] = sprite[y, x];
+                    if (bufferY >= 0 && bufferY < height && bufferX >= 0 && bufferX < witdh){
+                        if(sprite[y, x] != ' ') {
+                            buffer[bufferY, bufferX] = sprite[y, x];
+                        }
                     }
                 }
             }
