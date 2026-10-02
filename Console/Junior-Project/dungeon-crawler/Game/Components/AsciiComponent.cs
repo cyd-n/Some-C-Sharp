@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Numerics;
 using System.Reflection.Metadata;
+using dungeon_crawler.Engine;
 
 namespace dungeon_crawler.Game.GameObj {
     public class AsciiComponent : RpgComponent
@@ -12,6 +13,10 @@ namespace dungeon_crawler.Game.GameObj {
         public bool enabled { get; set; }
 
         // Methods
+        public AsciiComponent() {
+            //position = GameObject.position;
+        }
+
         public void SetIcon(char _icon) {
             icon = (_icon == null || _icon == ' ') ? _icon : 'O';
         }
@@ -29,7 +34,7 @@ namespace dungeon_crawler.Game.GameObj {
         }
 
         public override void Draw() {
-                
+            Renderer.instence.DrawOnBuffer(position, new char[,] {{icon}});
         }
     }
 }
