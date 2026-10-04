@@ -1,34 +1,53 @@
 using System.Numerics;
 using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Game;
 
 namespace dungeon_crawler.Engine.Components
 {
     public class MapAsciiComponent : RpgComponent
     {
-        // Properties
-        // need Color 
-        public char[,] map { get; private set; }
-        public Vector2 position { get; set; }
+        public char[,] tiles { get; private set; }
+        public Vector2 position { get; set; } = new Vector2(0, 0);
         public int sortingOrder { get; set; }
-        public bool enabled { get; set; }
+        public bool isTrigger { get; set; } = false;
 
-        // Methods
-        public MapAsciiComponent() {
-            //position = GameObject.position;
+        // Which tiles can be walked on ('.' floor and ' ' empty)
+        public HashSet<char> walkableTiles = new HashSet<char> { ' ', '.' };
+
+        public void SetMap(char[,] _tiles) {
+            tiles = _tiles;
         }
 
-        public void SetMap(char[,] _map) {
-            map = _map;
+        public override void Start() {
+            // Auto-register with the layer manager
+            MapLayerManagerComponent.instance?.RegisterMap(this);
         }
-
-        public override void Start(){ }
 
         public override void Update() { }
-
         public override void Input(ConsoleKeyInfo _key) { }
 
         public override void Draw() {
-            Renderer.instence.DrawOnBuffer(position, map);
+            Renderer.instence.DrawOnBuffer(position, tiles);
+        }
+
+        public bool IsWalkable(Vector2 _worldPosition) {
+            if (isTrigger)
+                return true;
+
+            if (tiles == null)
+                return true;
+
+            // Convert world position to local tile position
+            int x = (int)(_worldPosition.X - position.X);
+            int y = (int)(_worldPosition.Y - position.Y);
+
+            // Outside the map = solid, prevents walking off-screen
+            if (x < 0 || y < 0 ||
+                x >= tiles.GetLength(1) ||
+                y >= tiles.GetLength(0))
+                return false;
+
+            return walkableTiles.Contains(tiles[y, x]);
         }
     }
 }

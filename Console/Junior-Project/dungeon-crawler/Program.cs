@@ -8,7 +8,7 @@ using dungeon_crawler.Engine.Components.Objects;
 using dungeon_crawler.Game;
 
 class Program
-{
+{ // make collison work and use rigibody
     public static void Main(string[] arg) {  
         Renderer renderer = new Renderer(30,15);
         InputManager input = new InputManager();
@@ -24,6 +24,7 @@ class Program
 
         player.AddComponent(ascii);
         player.AddComponent(new PlayerComponent());
+        player.AddComponent(new RigidbodyComponent());
 
         // Map
         GameObj map = new GameObj("Player");
@@ -69,11 +70,16 @@ class Program
         });
 
         border.AddComponent(borderAscii);
+        
+        // Map manager
+        GameObj mapLayerManager = new GameObj("MapLayerManager");
+        mapLayerManager.AddComponent(new MapLayerManagerComponent());
 
         // set gameobjs
         gameObjs.Add(map);
         gameObjs.Add(player);
         gameObjs.Add(border);
+        gameObjs.Add(mapLayerManager);
 
         foreach(GameObj gO in gameObjs) {
             gO.Start();
@@ -85,6 +91,8 @@ class Program
             foreach (GameObj gameObj in gameObjs) {
                 gameObj.Update();
             }
+
+            Renderer.instence.ClearBuffer();
 
             foreach (GameObj gameObj in gameObjs) {
                 gameObj.Draw();

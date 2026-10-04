@@ -7,6 +7,12 @@ namespace dungeon_crawler.Engine {
         int witdh = 25, height = 50;
         char[,] buffer = new char[1,1];
 
+        public void ClearBuffer() {
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < witdh; x++)
+                    buffer[y, x] = ' ';
+        }
+
         public Renderer(int _witdh = 25, int _height = 50) {
             if(instence == null) {
                 instence = this;
