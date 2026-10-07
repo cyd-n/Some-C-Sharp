@@ -98,6 +98,8 @@ class Program
                 gameObj.Draw();
             }
 
+            renderer.DrawTui(new Vector2(0,0), new Vector2(10,10), GuiType.BOX);
+
             renderer.DrawOnScreen();
         }
     }
