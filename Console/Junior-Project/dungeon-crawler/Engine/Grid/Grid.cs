@@ -1,6 +1,6 @@
 namespace dungeon_crawler.Engine.Grid {
     public class Grid {
-        private Cell[] cells {get; }
-        private int layer {get; }
+        public Cell[] cells {get; private set; }
+        public int layer {get; private set; }
     }
 }
