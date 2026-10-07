@@ -1,12 +1,13 @@
 using System.Numerics;
 using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Engine.Grid;
 using dungeon_crawler.Game;
 
 namespace dungeon_crawler.Engine.Components
 {
     public class MapAsciiComponent : RpgComponent
     {
-        public char[,] tiles { get; private set; }
+        public GridObj tiles { get; private set; }
         public Vector2 position { get; set; } = new Vector2(0, 0);
         public int sortingOrder { get; set; }
         public bool isTrigger { get; set; } = false;
@@ -14,7 +15,7 @@ namespace dungeon_crawler.Engine.Components
         // Which tiles can be walked on ('.' floor and ' ' empty)
         public HashSet<char> walkableTiles = new HashSet<char> { ' ', '.' };
 
-        public void SetMap(char[,] _tiles) {
+        public void SetMap(GridObj _tiles) {
             tiles = _tiles;
         }
 
@@ -27,7 +28,7 @@ namespace dungeon_crawler.Engine.Components
         public override void Input(ConsoleKeyInfo _key) { }
 
         public override void Draw() {
-            Renderer.instence.DrawOnBuffer(position, tiles);
+            Renderer.instence.DrawOnBuffer(position, tiles.ToCharArray());
         }
 
         public bool IsWalkable(Vector2 _worldPosition) {
@@ -41,13 +42,15 @@ namespace dungeon_crawler.Engine.Components
             int x = (int)(_worldPosition.X - position.X);
             int y = (int)(_worldPosition.Y - position.Y);
 
+            char[,] tileChars = tiles.ToCharArray();
+
             // Outside the map = solid, prevents walking off-screen
             if (x < 0 || y < 0 ||
-                x >= tiles.GetLength(1) ||
-                y >= tiles.GetLength(0))
+                x >= tileChars.GetLength(1) ||
+                y >= tileChars.GetLength(0))
                 return false;
 
-            return walkableTiles.Contains(tiles[y, x]);
+            return walkableTiles.Contains(tileChars[y, x]);
         }
     }
 }

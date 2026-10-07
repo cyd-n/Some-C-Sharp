@@ -9,5 +9,13 @@ namespace dungeon_crawler.Engine.Grid {
             charater = _charater;
             position = _position;
         }
+
+        public void SetPosition(Vector2 _pos) {
+            position = _pos;
+        }
+
+        public char ToChar() {
+            return charater;
+        }
     }
 }
