@@ -19,7 +19,7 @@ namespace dungeon_crawler.Engine.Components
             tiles = _tiles;
         }
 
-        public override void Await(){ }
+        public override void Awake(){ }
 
         public override void Start() {
             // Auto-register with the layer manager

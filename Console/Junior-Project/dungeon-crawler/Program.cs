@@ -91,7 +91,7 @@ class Program
         gameObjs.Add(mapLayerManager);
 
         foreach(GameObj gO in gameObjs) {
-            gO.Await();
+            gO.Awake();
         }   
 
         foreach(GameObj gO in gameObjs) {

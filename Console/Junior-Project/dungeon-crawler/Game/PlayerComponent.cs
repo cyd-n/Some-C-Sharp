@@ -5,7 +5,7 @@ using dungeon_crawler.Engine.Objects;
 namespace dungeon_crawler.Game {
     public class PlayerComponent : RpgComponent {
 
-        public override void Await(){ }
+        public override void Awake(){ }
 
         public override void Start() { }
 

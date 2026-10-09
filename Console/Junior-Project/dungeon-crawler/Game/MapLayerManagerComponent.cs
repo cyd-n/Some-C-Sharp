@@ -26,7 +26,7 @@ namespace dungeon_crawler.Game {
             return true;
         }
 
-        public override void Await() {
+        public override void Awake() {
             if (instance == null)
                 instance = this;
         }

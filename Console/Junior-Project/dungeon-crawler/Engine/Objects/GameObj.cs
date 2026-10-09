@@ -22,6 +22,7 @@ namespace dungeon_crawler.Engine.Objects {
         public T AddComponent<T>(T _component) where T : RpgComponent {
             _component.gameObject = this;
             components.Add(_component);
+            _component.OnCreation();
 
             return _component;
         }
@@ -36,9 +37,25 @@ namespace dungeon_crawler.Engine.Objects {
             return null;
         }
 
-        public void Await() {
+        public T RemoveComponent<T>(T _component) where T : RpgComponent {
+            bool isSuccesfull = components.Remove(_component);
+            if(isSuccesfull)
+                return null;
+
+            _component.OnDeletion();
+
+            return _component;
+        }
+
+        public void OnCreation() {
             foreach(RpgComponent rpgComp in components) {
-                rpgComp.Await();
+                rpgComp.OnGameObjCreation();
+            }
+        }
+
+        public void Awake() {
+            foreach(RpgComponent rpgComp in components) {
+                rpgComp.Awake();
             }
         }
 

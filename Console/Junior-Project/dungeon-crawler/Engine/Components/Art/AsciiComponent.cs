@@ -24,7 +24,7 @@ namespace dungeon_crawler.Engine.Components.Art {
             position = new Vector2(_position.X + gameObject.position.X, _position.Y + gameObject.position.Y);
         }
 
-        public override void Await(){ }
+        public override void Awake(){ }
 
         public override void Start(){ }
 

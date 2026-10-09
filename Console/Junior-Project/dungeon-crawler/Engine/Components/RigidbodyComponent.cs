@@ -9,7 +9,7 @@ namespace dungeon_crawler.Engine.Components {
         // All rigidbodies, for object-vs-object collision
         public static List<RigidbodyComponent> allBodies = new List<RigidbodyComponent>();
 
-        public override void Await(){ }
+        public override void Awake(){ }
 
         public override void Start() {
             if (!allBodies.Contains(this))
