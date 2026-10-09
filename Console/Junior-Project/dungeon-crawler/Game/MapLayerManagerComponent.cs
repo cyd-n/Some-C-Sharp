@@ -8,8 +8,7 @@ namespace dungeon_crawler.Game {
         public List<MapAsciiComponent> mapOrderList = new List<MapAsciiComponent>();
 
         public MapLayerManagerComponent() {
-            if (instance == null)
-                instance = this;
+            
         }
 
         public void RegisterMap(MapAsciiComponent _map) {
@@ -26,7 +25,13 @@ namespace dungeon_crawler.Game {
             }
             return true;
         }
-        public override void Start(){ }
+
+        public override void Await() {
+            if (instance == null)
+                instance = this;
+        }
+
+        public override void Start() { }
 
         public override void Update() { }
 

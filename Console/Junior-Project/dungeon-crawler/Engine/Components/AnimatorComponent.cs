@@ -1,7 +1,5 @@
-namespace dungeon_crawler.Game.Components
-{
-    public class AnimatorComponent
-    {
+namespace dungeon_crawler.Game.Components {
+    public class AnimatorComponent {
         
     }
 }

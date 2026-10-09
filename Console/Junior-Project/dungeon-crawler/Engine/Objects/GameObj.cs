@@ -36,6 +36,12 @@ namespace dungeon_crawler.Engine.Objects {
             return null;
         }
 
+        public void Await() {
+            foreach(RpgComponent rpgComp in components) {
+                rpgComp.Await();
+            }
+        }
+
         public void Start() {
             foreach(RpgComponent rpgComp in components) {
                 rpgComp.Start();

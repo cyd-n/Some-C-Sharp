@@ -91,6 +91,10 @@ class Program
         gameObjs.Add(mapLayerManager);
 
         foreach(GameObj gO in gameObjs) {
+            gO.Await();
+        }   
+
+        foreach(GameObj gO in gameObjs) {
             gO.Start();
         }        
 

@@ -4,7 +4,8 @@ using dungeon_crawler.Engine.Objects;
 
 namespace dungeon_crawler.Game {
     public class PlayerComponent : RpgComponent {
-        public PlayerComponent() { }
+
+        public override void Await(){ }
 
         public override void Start() { }
 
