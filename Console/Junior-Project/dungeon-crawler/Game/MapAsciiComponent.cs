@@ -1,5 +1,5 @@
 using System.Numerics;
-using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Engine.Components;
 using dungeon_crawler.Engine.Grid;
 using dungeon_crawler.Game;
 

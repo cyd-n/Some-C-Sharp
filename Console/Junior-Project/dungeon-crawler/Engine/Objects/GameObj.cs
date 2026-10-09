@@ -1,9 +1,10 @@
 using System.ComponentModel;
 using System.Numerics;
 using System.Reflection.Metadata;
-using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Engine.Objects;
+using dungeon_crawler.Engine.Components;
 
-namespace dungeon_crawler.Engine.Components.Objects {
+namespace dungeon_crawler.Engine.Objects {
     public class GameObj {
         public string name {get; set;}
         public string tag {get; set;}

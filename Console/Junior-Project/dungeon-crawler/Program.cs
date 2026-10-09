@@ -4,7 +4,7 @@ using System.Numerics;
 using dungeon_crawler.Engine;
 using dungeon_crawler.Engine.Components;
 using dungeon_crawler.Engine.Components.Art;
-using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Engine.Objects;
 using dungeon_crawler.Game;
 using dungeon_crawler.Engine.Grid;
 
@@ -35,16 +35,11 @@ class Program
 
         Cell[] grid = new Cell[width * height];
 
-        for (int y = 0; y < width; y++)
-        {
-            for (int x = 0; x < height; x++)
-            {
+        for (int y = 0; y < width; y++) {
+            for (int x = 0; x < height; x++) {
                 int index = y * height + x;
 
-                grid[index] = new Cell(
-                    '.',
-                    new Vector2(x, width - 1 - y)
-                );
+                grid[index] = new Cell('.', new Vector2(x, width - 1 - y));
             }
         }
 
@@ -57,24 +52,17 @@ class Program
 
         map.AddComponent(mapAscii);
 
-
         // Border
         GameObj border = new GameObj("Border");
         MapAsciiComponent borderAscii = new MapAsciiComponent();
 
         Cell[] borderGrid = new Cell[width * height];
 
-        for (int y = 0; y < width; y++)
-        {
-            for (int x = 0; x < height; x++)
-            {
+        for (int y = 0; y < width; y++) {
+            for (int x = 0; x < height; x++) {
                 int index = y * height + x;
 
-                bool isBorder =
-                    x == 0 ||
-                    x == height - 1 ||
-                    y == 0 ||
-                    y == width - 1;
+                bool isBorder = x == 0 || x == height - 1 ||  y == 0 || y == width - 1;
 
                 char character = isBorder ? '#' : ' ';
 

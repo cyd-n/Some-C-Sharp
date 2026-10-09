@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Numerics;
 using System.Reflection.Metadata;
 using dungeon_crawler.Engine;
-using dungeon_crawler.Engine.Components.Objects;
+using dungeon_crawler.Engine.Objects;
 
 namespace dungeon_crawler.Engine.Components.Art {
     public class AsciiComponent : RpgComponent
