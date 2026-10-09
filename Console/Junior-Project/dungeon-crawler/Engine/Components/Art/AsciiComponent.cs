@@ -21,7 +21,7 @@ namespace dungeon_crawler.Engine.Components.Art {
         }
 
         public void SetPosition(Vector2 _position) {
-            position = new Vector2(position.X + gameObject.position.X, position.Y + gameObject.position.Y);
+            position = new Vector2(_position.X + gameObject.position.X, _position.Y + gameObject.position.Y);
         }
 
         public override void Start(){ }
