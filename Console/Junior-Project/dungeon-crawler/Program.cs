@@ -33,20 +33,20 @@ class Program
         int height = 18;
         int width = 32;
 
-        Cell[] grid = new Cell[width * height];
+        Cell[] grid = new Cell[height * width];
 
-        for (int y = 0; y < width; y++) {
-            for (int x = 0; x < height; x++) {
-                int index = y * height + x;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int index = y * width + x;
 
-                grid[index] = new Cell('.', new Vector2(x, width - 1 - y));
+                grid[index] = new Cell('.', new Vector2(x, height - 1 - y));
             }
         }
 
         MapAsciiComponent mapAscii = new MapAsciiComponent();
         mapAscii.SetMap(new GridObj(
             grid,
-            new Vector2(height, width),
+            new Vector2(width, height),
             0
         ));
 
@@ -56,13 +56,13 @@ class Program
         GameObj border = new GameObj("Border");
         MapAsciiComponent borderAscii = new MapAsciiComponent();
 
-        Cell[] borderGrid = new Cell[width * height];
+        Cell[] borderGrid = new Cell[height * width];
 
-        for (int y = 0; y < width; y++) {
-            for (int x = 0; x < height; x++) {
-                int index = y * height + x;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                int index = y * width + x;
 
-                bool isBorder = x == 0 || x == height - 1 ||  y == 0 || y == width - 1;
+                bool isBorder = x == 0 || x == width - 1 ||  y == 0 || y == height - 1;
 
                 char character = isBorder ? '#' : ' ';
 
@@ -75,7 +75,7 @@ class Program
 
         borderAscii.SetMap(new GridObj(
             borderGrid,
-            new Vector2(height, width),
+            new Vector2(width, height),
             0
         ));
 
@@ -95,8 +95,6 @@ class Program
         }        
 
         while (true) {
-            InputManager.instence.WaitForInput(gameObjs);
-
             foreach (GameObj gameObj in gameObjs) {
                 gameObj.Update();
             }
@@ -108,6 +106,8 @@ class Program
             }
 
             renderer.DrawOnScreen();
+
+            InputManager.instence.WaitForInput(gameObjs);
         }
     }
 }

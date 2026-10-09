@@ -1,9 +1,110 @@
-Chareter,
 Enemy,
-player,
 Skill,
 Combat,
 Item,
-Map,
 
 The Tui dont exist yet and need make a library for it first and then make so that engine render got print in the canvas
+
+1. Fix the grid dimensions and indexing
+
+In Program.cs, your map loops use width for y and height for x, but your array indexing and grid dimensions don't consistently follow the same convention. Your GridObj.ToCharArray() also creates an array with reversed dimensions.
+
+Use x < width and y < height.
+
+Index cells with y * width + x.
+
+Store characters as array[y, x].
+
+Construct the grid with new Vector2(width, height).
+
+This is the first thing I'd fix because incorrect dimensions can cause out-of-range errors and distorted maps.
+
+2. Fix map layers and drawing order
+
+Your Renderer ignores sortingOrder, and your ASCII drawing method doesn't use the enabled property. Additionally, MapLayerManagerComponent.IsWalkable() checks every registered map, including visual layers that may not represent solid terrain.
+
+Draw maps and entities in a predictable order.
+
+Separate visual layers from collision layers.
+
+Honor component enabled states.
+
+Let transparent characters preserve what's already drawn underneath.
+
+3. Improve the rendering loop
+
+Renderer.DrawOnScreen() builds a string using repeated concatenation and calls Console.Clear() every frame. This can cause unnecessary allocations and visible flickering.
+
+Use a StringBuilder.
+
+Render the complete frame in one write.
+
+Use Console.SetCursorPosition(0, 0) to redraw in place.
+
+Handle small terminal windows gracefully.
+
+4. Make components safer
+
+AsciiComponent.SetIcon() uses || where && is needed, so its fallback condition is incorrect. SetPosition() also ignores the supplied position argument.
+
+Fix those methods, initialize non-nullable properties properly, and consider using C# properties instead of publicly exposed mutable fields.
+
+One additional bug is especially important: your map manager is started after the maps in Program.cs. That means MapAsciiComponent.Start() cannot register the maps because MapLayerManagerComponent.instance is still null. As a result, map collision may not work at all.
+
+Create the manager first, or register maps explicitly after all objects have been initialized.
+
+2. Improve the engine architecture
+
+I'd aim for this structure:
+
+Game
+
+Owns the game loop and scene
+
+Input System
+
+Keyboard events and actions
+
+Update System
+
+Components and game logic
+
+World / Scene
+
+Entities, maps, and collision
+
+Renderer
+
+Layers, buffer, and terminal
+
+I'd make these changes next:
+
+Introduce a Scene class. It should own the list of game objects and handle initialization, updates, input, and drawing. Your Program.cs would then be much smaller.
+
+Remove global singleton dependencies where possible. Classes such as Renderer, InputManager, and MapLayerManagerComponent currently rely on static instance fields. Pass their dependencies into the systems that need them instead.
+
+Add a proper entity lifecycle. Define when components are created, started, updated, enabled, disabled, and destroyed.
+
+Separate responsibilities. RigidbodyComponent should handle movement and physics, while the map system should determine which cells are solid.
+
+Add a CameraComponent that actually works. It should translate world coordinates into screen coordinates so you can create dungeons larger than the terminal.
+
+3. Make the dungeon crawler itself more interesting
+
+Once the engine is stable, build the game features on top of it.
+
+Procedural dungeon generation
+
+Generate connected rooms, corridors, walls, doors, and stairs. Add multiple dungeon floors and a system for placing enemies and treasure.
+
+Combat and enemies
+
+Create CharacterComponent, EnemyAIComponent, HealthComponent, and CombatSystem. Give enemies distinct behaviors and let them take turns after the player moves.
+
+Items and progression
+
+Implement an inventory, weapons, armor, consumables, experience, leveling, and loot drops. Keep item definitions separate from the entities that use them.
+
+A proper TUI
+
+Since your Need.text mentions a terminal UI, consider a dedicated UI layer for health bars, inventory panels, combat logs, menus, and colored ASCII characters. Keep it separate from the world renderer.

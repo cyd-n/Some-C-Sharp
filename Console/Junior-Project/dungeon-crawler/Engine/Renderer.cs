@@ -5,7 +5,7 @@ namespace dungeon_crawler.Engine {
     public class Renderer {
         public static Renderer instence; 
 
-        int witdh = 25, height = 50;
+        int witdh = 50, height = 50;
         char[,] buffer = new char[1,1];
 
         public void ClearBuffer() {
@@ -25,18 +25,15 @@ namespace dungeon_crawler.Engine {
             buffer = new char[height, witdh];
         }
 
-        public void DrawOnBuffer(Vector2 _pos, char[,] sprite)
-        {
+        public void DrawOnBuffer(Vector2 _pos, char[,] sprite) {
             int posX = (int)_pos.X;
             int posY = (int)_pos.Y;
 
             int spriteHeight = sprite.GetLength(0);
             int spriteWidth = sprite.GetLength(1);
 
-            for (int y = 0; y < spriteHeight; y++)
-            {
-                for (int x = 0; x < spriteWidth; x++)
-                {
+            for (int y = 0; y < spriteHeight; y++) {
+                for (int x = 0; x < spriteWidth; x++) {
                     int bufferY = posY + y;
                     int bufferX = posX + x;
 
