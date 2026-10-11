@@ -36,26 +36,117 @@ Layers, buffer, and terminal
 I'd make these changes next:
 Introduce a Scene class. It should own the list of game objects and handle initialization, updates, input, and drawing. Your Program.cs would then be much smaller.
 
-Add a proper entity lifecycle. Define when components are created, started, updated, enabled, disabled, and destroyed.
+Add a proper entity lifecycle. Define when components are enabled, disabled
 Separate responsibilities. RigidbodyComponent should handle movement and physics, while the map system should determine which cells are solid.
 Add a CameraComponent that actually works. It should translate world coordinates into screen coordinates so you can create dungeons larger than the terminal.
 
 3. Make the dungeon crawler itself more interesting
 
-Once the engine is stable, build the game features on top of it.
-
 Procedural dungeon generation
-
 Generate connected rooms, corridors, walls, doors, and stairs. Add multiple dungeon floors and a system for placing enemies and treasure.
-
 Combat and enemies
-
 Create CharacterComponent, EnemyAIComponent, HealthComponent, and CombatSystem. Give enemies distinct behaviors and let them take turns after the player moves.
-
 Items and progression
-
 Implement an inventory, weapons, armor, consumables, experience, leveling, and loot drops. Keep item definitions separate from the entities that use them.
-
 A proper TUI
-
 Since your Need.text mentions a terminal UI, consider a dedicated UI layer for health bars, inventory panels, combat logs, menus, and colored ASCII characters. Keep it separate from the world renderer.
+
+-------------------------
+
+Editor & Dev Tools
+- Scene Editor
+- Inspector
+- Asset Browser
+- Debugger
+        |
+        | - Create
+        | - Configue
+        | - Inspect
+        | - Run
+        |
+       \_/
+Core Engine Run-Time
+- Scene Management
+- Object Life-Time
+- Scripting
+- events
+        |
+       \_/
+Rendering
+- Gpu
+- Materials
+- Lighting
+
+Physics
+- colision
+- Forces
+- Motion
+
+Scripting
+- Config lang
+- Core lang
+- Scripting lang
+- Execution
+- APIs
+
+Assets & Resources
+- Meshes
+- Textures
+- Audio
+        |
+       \_/
+Hardware Layer
+- OS
+- Graphical API
+- CPU
+- GPU
+- Memory
+
+--------------------------------------------------------
+
+Layer B: The world and scene system
+
+A scene is the collection of objects and their relationships.
+
+For example:
+
+Scene: MainLevel
+
+Player
+
+Transform · MeshRenderer · Movement
+
+Floor
+
+Transform · MeshRenderer · Collider
+
+Camera
+
+Transform · Camera settings
+
+Your scene manager needs to support:
+
+Creating and deleting objects.
+
+Adding and removing components.
+
+Parenting objects to other objects.
+
+Saving and loading scenes.
+
+Finding objects and resolving references between them.
+
+You also need a serialization format so that the world you create in the editor can be saved to disk and reconstructed later.
+
+For example, a scene file could store object IDs, names, transforms, component types, and component properties. Your engine reads that file and rebuilds the scene in memory.
+
+This is one of the fundamental connections between the editor and the runtime.
+
+Layer C: The engine loop
+
+Now comes the part that makes everything alive.
+
+A game engine continuously repeats a loop. Unity documents its runtime in terms of a Player loop, which coordinates input, updates, and rendering. 
+Unity Docs
+
+A simplified version looks like this:

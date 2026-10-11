@@ -37,14 +37,13 @@ namespace dungeon_crawler.Engine.Objects {
             return null;
         }
 
-        public T RemoveComponent<T>(T _component) where T : RpgComponent {
-            bool isSuccesfull = components.Remove(_component);
-            if(isSuccesfull)
-                return null;
+        public bool RemoveComponent<T>(T component) where T : RpgComponent {
+            if (!components.Remove(component))
+                return false;
 
-            _component.OnDeletion();
-
-            return _component;
+            component.OnDeletion();
+            component.gameObject = null; 
+            return true;
         }
 
         public void OnCreation() {
