@@ -11,6 +11,7 @@ using dungeon_crawler.Engine.Grid;
 class Program
 { // make collison work and use rigibody
     public static void Main(string[] arg) {  
+        
         Renderer renderer = new Renderer(40,20);
         InputManager input = new InputManager();
 
@@ -91,22 +92,22 @@ class Program
         gameObjs.Add(mapLayerManager);
 
         foreach(GameObj gO in gameObjs) {
-            gO.Awake();
+            gO.SetState(LifeCycleState.AWAKE);
         }   
 
         foreach(GameObj gO in gameObjs) {
-            gO.Start();
+            gO.SetState(LifeCycleState.START);
         }        
 
         while (true) {
             foreach (GameObj gameObj in gameObjs) {
-                gameObj.Update();
+                gameObj.SetState(LifeCycleState.UPDATE);
             }
 
             Renderer.instence.ClearBuffer();
 
             foreach (GameObj gameObj in gameObjs) {
-                gameObj.Draw();
+                gameObj.SetState(LifeCycleState.DRAW);
             }
 
             renderer.DrawOnScreen();

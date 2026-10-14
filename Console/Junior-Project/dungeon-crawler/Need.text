@@ -108,21 +108,13 @@ Layer B: The world and scene system
 
 A scene is the collection of objects and their relationships.
 
-For example:
-
 Scene: MainLevel
 
 Player
 
-Transform · MeshRenderer · Movement
-
 Floor
 
-Transform · MeshRenderer · Collider
-
 Camera
-
-Transform · Camera settings
 
 Your scene manager needs to support:
 
@@ -142,6 +134,8 @@ For example, a scene file could store object IDs, names, transforms, component t
 
 This is one of the fundamental connections between the editor and the runtime.
 
+--------------
+
 Layer C: The engine loop
 
 Now comes the part that makes everything alive.
@@ -150,3 +144,344 @@ A game engine continuously repeats a loop. Unity documents its runtime in terms 
 Unity Docs
 
 A simplified version looks like this:
+
+this:
+
+1. Collect input
+
+Keyboard, mouse, controller
+
+2. Run game logic
+
+Scripts and gameplay rules
+
+3. Simulate physics
+
+Velocity, forces, collisions
+
+4. Prepare rendering
+
+Transforms, cameras, visible objects
+
+5. GPU draws the frame
+
+Produce pixels on screen
+
+Repeat while the application runs
+
+This is a conceptual loop, not a strict ordering of every Unity subsystem. Real engines separate frame updates from fixed-timestep physics and coordinate work across threads.
+
+Here's a tiny version of the idea:
+
+while (running) {
+    input.update();
+    scripts.update(deltaTime);
+    physics.step(fixedDeltaTime);
+    renderer.draw(scene, camera);
+}
+
+Each subsystem has a contract: input produces input state, scripts update the world, physics resolves motion and collisions, and rendering turns the current world into an image.
+
+Layer D: The renderer
+
+This is one of the more technically demanding parts.
+
+The renderer converts your scene into instructions that a graphics API can send to the GPU.
+
+For a basic 3D renderer, you'll need:
+
+A way to create a window and graphics context.
+
+Vertex and index buffers containing geometry.
+
+Shaders that calculate vertex positions and pixel colors.
+
+Camera matrices and object transformation matrices.
+
+Textures, materials, and lighting.
+
+A render loop that submits draw commands.
+
+The general pipeline looks like this:
+
+Mesh data
+
+Vertices, triangles, normals, UV coordinates.
+
+Shaders and materials
+
+Determine how surfaces are shaded and colored.
+
+Camera and draw commands
+
+Transform objects into camera space and submit work to the GPU.
+
+Framebuffer
+
+The final image that appears on the screen.
+
+You do not need to implement a graphics API yourself. You can build your renderer on top of Vulkan, Direct3D, Metal, or OpenGL, depending on your targets. Each API has different platform and complexity trade-offs.
+
+Layer E: The scripting system
+
+This is the system that allows other people to extend your engine without modifying its core source code.
+
+Unity uses a native engine with a C# scripting layer and runtime backends; its documentation describes how scripts interact with engine objects and APIs. 
+Manual: Unity architecture
++1
+
+For your own engine, imagine a developer writes:
+
+class MovementScript {
+public:
+    void update(World& world, ObjectId player, float dt) {
+        world.transform(player).x += 5.0f * dt;
+    }
+};
+
+Your engine needs to determine:
+
+How scripts are loaded and instantiated.
+
+How scripts access objects and components.
+
+When their update functions run.
+
+How script properties appear in the editor.
+
+How errors are reported.
+
+How scripts survive saving and reloading a scene.
+
+For a first version, you could implement scripts directly in C++. For a more extensible engine, you could embed Lua, use C#, or design your own scripting language.
+
+The important part is the engine API: a stable interface between user-created behavior and your internal systems.
+
+3. The editor is a separate major engineering project
+
+The engine runtime is only half of the experience. Unity also has a graphical editor that lets people manipulate the world without writing every instruction manually.
+
+A simplified editor contains:
+
+Scene viewport
+
+Displays the world and lets the user select, move, rotate, and scale objects.
+
+Hierarchy
+
+Shows objects, parent-child relationships, and scene structure.
+
+Inspector
+
+Edits component values and exposes properties to developers.
+
+Asset browser
+
+Imports and organizes models, textures, scripts, sounds, and other resources.
+
+The editor and runtime should use the same underlying scene and object model. Otherwise, you end up maintaining two different definitions of the world.
+
+A useful architecture is to build the runtime as a library and the editor as a separate application that uses that library.
+
+When the user presses Play, the editor can start the runtime using the current scene or a saved snapshot. When the user stops, you decide which runtime changes to discard and which editor changes to preserve.
+
+4. How I would actually build a Unity-like system
+
+Don't start by trying to recreate all of Unity. Build a small engine that can grow.
+
+Phase 1 — Core runtime
+
+Foundation
+
+Objects, transforms, components, scene hierarchy, update loop, and serialization.
+
+Phase 2 — Basic graphics
+
+Window creation, camera, meshes, shaders, textures, and a basic lighting model.
+
+Phase 3 — Editor
+
+Viewport, hierarchy, inspector, selection tools, gizmos, and save/load workflow.
+
+Phase 4 — Extensibility
+
+Scripting, component registration, reflection, events, and editor extensions.
+
+Phase 5 — Production features
+
+Physics, audio, animation, asset import pipeline, debugging, profiling, and packaging builds.
+
+A reasonable starting technology stack would be:
+
+Part
+
+	
+
+Possible choice
+
+
+
+
+Core engine
+
+	
+
+C++
+
+
+
+
+Editor UI
+
+	
+
+Dear ImGui for a prototype
+
+
+
+
+Window/input
+
+	
+
+SDL
+
+
+
+
+Graphics
+
+	
+
+OpenGL for a learning prototype, or Vulkan for a more advanced renderer
+
+
+
+
+Physics
+
+	
+
+Jolt Physics or another established physics library
+
+
+
+
+Scene format
+
+	
+
+JSON initially, then a more efficient format if needed
+
+
+
+
+Scripting
+
+	
+
+C++ initially, Lua or C# later
+
+
+
+
+Build system
+
+	
+
+CMake
+
+These are suggestions, not requirements. Your choices depend on whether you want to learn engine internals, make a commercial tool, or create a specialized editor.
+
+For studying a real codebase, the open-source 
+Godot Engine
+ is particularly useful because its architecture separates the scene layer, engine servers, core, and platform drivers. Its official 
+architecture documentation
+
+is a good place to explore how these systems fit together. 
+Godot Engine (stable) documentation in English
++1
+
+5. The deeper architectural decisions
+
+Once you understand the basic layers, these are the questions that determine whether your engine is well designed:
+
+Data ownership: Who owns objects and components, and how are references kept valid?
+
+Scheduling: What runs every frame, at a fixed timestep, or only when an event occurs?
+
+Reflection: How does the editor discover component properties and display suitable controls?
+
+Serialization: How do you preserve object identity, references, resource dependencies, and version compatibility?
+
+Resource management: How are assets imported, cached, unloaded, and shared?
+
+Threading: Which work can run in parallel, and how do you synchronize access to the world?
+
+Extensibility: How can users add new behavior without rewriting the engine?
+
+Build pipeline: How does an editable project become a standalone application?
+
+These are the problems that turn a graphics demo into an actual engine.
+
+One question that changes the whole design
+
+When you say you want to build a system like Unity, which kind of system do you have in mind?
+
+What do you want your system to do?
+
+A game engine — 3D worlds, physics, graphics, and scripting.
+
+A visual creation platform — an editor where users build things from reusable components.
+
+A general-purpose engine — a platform where users can create different kinds of applications using a common runtime and tools.
+
+The underlying runtime — object systems, execution, memory, scheduling, and plugins.
+
+How much programming experience do you have?
+
+Beginner — still learning programming.
+Some experience — I can write programs and understand code.
+Advanced — I want implementation details and system design.
+
+---------------------------------------------------------------------
+
+TOML
+
+	
+
+Hand-written engine configs and simple scenes
+
+	
+
+Nested, complex scene data can get awkward
+
+YAML
+
+	
+
+Complex, hierarchical scene descriptions
+
+	
+
+Indentation rules and parsing complexity
+
+JSON
+
+	
+
+Serialization, tooling, and broad compatibility
+
+	
+
+More verbose for humans; no comments in standard JSON
+
+C# lists
+
+	
+
+Runtime state and dynamically generated objects
+
+	
+
+Not ideal for authoring lots of levels

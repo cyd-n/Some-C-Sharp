@@ -3,6 +3,7 @@ using dungeon_crawler.Engine.Objects;
 
 namespace dungeon_crawler.Engine {
     public class InputManager {
+        // Later I while make blocking input and none blocking so you can built many differnt types sof game but for now mine engine dont need it
         public static InputManager instence; 
 
         public InputManager() {
@@ -15,7 +16,7 @@ namespace dungeon_crawler.Engine {
             ConsoleKeyInfo key = Console.ReadKey(true);
 
             foreach (GameObj gameObj in gameObjs) {
-                gameObj.Input(key);
+                gameObj.SetState(key);
             }
 
             return;

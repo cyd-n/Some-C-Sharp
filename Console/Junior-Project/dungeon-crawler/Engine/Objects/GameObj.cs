@@ -46,25 +46,58 @@ namespace dungeon_crawler.Engine.Objects {
             return true;
         }
 
-        public void OnCreation() {
+        public void SetState(LifeCycleState _funcition) {
+            switch (_funcition) {
+                case LifeCycleState.ON_CREATION:  OnCreation();   break;   
+                case LifeCycleState.AWAKE:        Awake();        break;   
+                case LifeCycleState.START:        Start();        break;   
+                case LifeCycleState.UPDATE:       Update();       break;   
+                case LifeCycleState.DRAW:         Draw();         break;   
+                case LifeCycleState.ON_DELETION:  OnDeletion();   break;   
+            }
+        }
+
+        public void SetState(ConsoleKeyInfo _key) {
+            Input(_key); 
+        }
+
+        private bool OnDeletion() {
+            foreach(RpgComponent rpgComp in components) {
+                rpgComp.OnDeletion();
+                rpgComp.gameObject = null;
+            }
+
+            components.Clear();
+            active = false;
+            
+            return true;
+        }
+
+        private void OnCreation() {
             foreach(RpgComponent rpgComp in components) {
                 rpgComp.OnGameObjCreation();
             }
         }
 
-        public void Awake() {
+        private void Awake() {
+            if (!active)
+                return;
+
             foreach(RpgComponent rpgComp in components) {
                 rpgComp.Awake();
             }
         }
 
-        public void Start() {
+        private void Start() {
+            if (!active)
+                return;
+
             foreach(RpgComponent rpgComp in components) {
                 rpgComp.Start();
             }
         }
 
-        public void Update() {
+        private void Update() {
             if (!active)
                 return;
 
@@ -73,7 +106,7 @@ namespace dungeon_crawler.Engine.Objects {
             }
         }
 
-        public void Input(ConsoleKeyInfo _key) {
+        private void Input(ConsoleKeyInfo _key) {
             if (!active)
                 return;
 
@@ -82,7 +115,7 @@ namespace dungeon_crawler.Engine.Objects {
             }
         }
 
-        public void Draw() {
+        private void Draw() {
             if (!active)
                 return;
 
