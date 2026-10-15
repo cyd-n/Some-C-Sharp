@@ -5,9 +5,8 @@ namespace dungeon_crawler.Engine.Grid {
         public char charater;
         private Vector2 position;
 
-        public Cell(char _charater, Vector2 _position) {
+        public Cell(char _charater) {
             charater = _charater;
-            position = _position;
         }
 
         public void SetPosition(Vector2 _pos) {

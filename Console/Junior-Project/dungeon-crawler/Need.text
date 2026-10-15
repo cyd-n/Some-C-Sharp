@@ -151,10 +151,6 @@ this:
 
 Keyboard, mouse, controller
 
-2. Run game logic
-
-Scripts and gameplay rules
-
 3. Simulate physics
 
 Velocity, forces, collisions

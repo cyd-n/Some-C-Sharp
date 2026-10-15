@@ -54,6 +54,7 @@ namespace dungeon_crawler.Engine.Objects {
                 case LifeCycleState.UPDATE:       Update();       break;   
                 case LifeCycleState.DRAW:         Draw();         break;   
                 case LifeCycleState.ON_DELETION:  OnDeletion();   break;   
+                default: break;
             }
         }
 

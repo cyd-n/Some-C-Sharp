@@ -13,6 +13,7 @@ namespace dungeon_crawler.Engine.Grid {
             layer = _layer;
         }
 
+        // fix cell to multi array
         public char[,] ToCharArray() {
             int width = (int)size.X;
             int height = (int)size.Y;

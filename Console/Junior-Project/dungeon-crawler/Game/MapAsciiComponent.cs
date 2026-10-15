@@ -9,17 +9,37 @@ namespace dungeon_crawler.Engine.Components
     {
         public GridObj tiles { get; private set; }
         public Vector2 position { get; set; } = new Vector2(0, 0);
+        private Vector2 size { get; set; } = new Vector2(0, 0);
+        private int layer = 0;
+        public string path = "";
         public int sortingOrder { get; set; }
         public bool isTrigger { get; set; } = false;
 
         // Which tiles can be walked on ('.' floor and ' ' empty)
         public HashSet<char> walkableTiles = new HashSet<char> { ' ', '.' };
 
-        public void SetMap(GridObj _tiles) {
-            tiles = _tiles;
+        public void SetMap(string _path, Vector2 _size, int _layer = 0) {
+            path = Path.Combine(Directory.GetCurrentDirectory(), "Game/", _path);
+            size = _size;
+            layer = _layer;
+
+            string spriteString = File.ReadAllText(path);
+
+            spriteString = spriteString.Replace('\n', ' ');
+            spriteString = spriteString.Replace('\r', ' ');
+            spriteString = spriteString.Replace('\t', ' ');
+
+
+            List<Cell> cells = new List<Cell>();
+
+            foreach(char c in spriteString) {
+                cells.Add(new Cell(c));
+            }
+
+            tiles = new GridObj(cells.ToArray(), size, layer);
         }
 
-        public override void Awake(){ }
+        public override void Awake() { }
 
         public override void Start() {
             // Auto-register with the layer manager
