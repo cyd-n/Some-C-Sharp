@@ -32,14 +32,14 @@ class Program
         GameObj map = new GameObj("underGround");
 
         MapAsciiComponent mapAscii = new MapAsciiComponent();
-        mapAscii.SetMap("Level.coll", new Vector2(151,64));
+        mapAscii.SetMap("Level.coll", new Vector2(151,63));
 
         map.AddComponent(mapAscii);
 
         GameObj border = new GameObj("Border");
 
         MapAsciiComponent borderAscii = new MapAsciiComponent();
-        borderAscii.SetMap("Level.map", new Vector2(151,64));
+        borderAscii.SetMap("Level.map", new Vector2(151,63));
 
         border.AddComponent(borderAscii);
 
