@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "iq4ZZtvFi/I=",
+  "success": true,
+  "projectFilePath": "/home/quidon/Code/Cydn/Some-C-Sharp/Console/Junior-Project/Spectra/Spectra.csproj",
+  "expectedPackageFiles": [
+    "/home/quidon/.nuget/packages/spectre.console/0.57.2/spectre.console.0.57.2.nupkg.sha512",
+    "/home/quidon/.nuget/packages/spectre.console.ansi/0.57.2/spectre.console.ansi.0.57.2.nupkg.sha512"
+  ],
+  "logs": []
+}
