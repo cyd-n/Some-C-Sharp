@@ -1,0 +1,107 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading;
+
+public class SimpleServer
+{
+    private TcpListener listener;
+    private List<TcpClient> clients = new List<TcpClient>(); // Keeps track of connected clients
+
+    private float version = 0.1f;
+    
+    public void Start(int _port) {
+        listener = new TcpListener(IPAddress.Any, _port);
+        listener.Start();
+        Console.WriteLine("Server started, waiting for connections...");
+
+        Thread acceptThread = new Thread(AcceptClients);
+        acceptThread.Start();
+    }
+
+    private void AcceptClients() {
+        while (true) {
+            try {
+                TcpClient client = listener.AcceptTcpClient();
+                clients.Add(client);
+                Console.WriteLine("Client connected.");
+
+                Thread clientThread = new Thread(() => MessageFromClient(client));
+                clientThread.Start();
+            } catch (Exception ex) {
+                Console.WriteLine("Error accepting client: " + ex.Message);
+            }
+        }
+    }
+
+    private void MessageFromClient(TcpClient _client) {
+        NetworkStream stream = _client.GetStream();
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+
+        try {
+            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0) {
+                string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                Console.WriteLine("Received: " + message);
+                
+                string[] coreData = message.Split(':');
+                if (coreData[0] == "101") { // 101: means login in 
+                    string[] data = coreData[1].Split('$');
+
+                    if(float.Parse(data[0]) >= version) {
+                        LoginClient(_client, data[2]);
+                    }
+                    
+                }
+            }
+        } catch (Exception ex) {
+            Console.WriteLine("Error communicating with client: " + ex.Message);
+        } finally {
+            stream.Close();
+        }
+    }
+    
+    private void MessageToClient(TcpClient _client, string _message) {
+        NetworkStream stream = _client.GetStream();
+        
+        try {
+            byte[] response = Encoding.UTF8.GetBytes(_message);
+            stream.Write(response, 0, response.Length);
+        } catch (Exception ex) {
+            Console.WriteLine("Error communicating with client: " + ex.Message);
+        } finally {
+            stream.Close();
+        }
+    }
+    
+    private void StopClient(TcpClient _client) {
+        _client.Close();
+        clients.Remove(_client);
+        Console.WriteLine("Client disconnected.");
+    }
+    
+    private void LoginClient(TcpClient _client, string _data) {
+        NetworkStream stream = _client.GetStream();
+        
+        byte[] binaryData = Convert.FromBase64String(_data);
+        string decodedString = System.Text.Encoding.UTF8.GetString(binaryData);
+        
+        // auth for acount later.
+        string[] data = decodedString.Split(':');
+        
+        byte[] response = Encoding.UTF8.GetBytes($"Welcome {data[0]}");
+        stream.Write(response, 0, response.Length);
+    }
+
+}
+
+class Program
+{
+    static void Main()
+    {
+        SimpleServer server = new SimpleServer();
+        server.Start(5454); // Choose your port, any port!
+    }
+};

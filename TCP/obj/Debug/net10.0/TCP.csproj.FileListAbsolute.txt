@@ -1,0 +1,15 @@
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/bin/Debug/net10.0/TCP
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/bin/Debug/net10.0/TCP.deps.json
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/bin/Debug/net10.0/TCP.runtimeconfig.json
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/bin/Debug/net10.0/TCP.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/bin/Debug/net10.0/TCP.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.GeneratedMSBuildEditorConfig.editorconfig
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.AssemblyInfoInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.AssemblyInfo.cs
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.csproj.CoreCompileInputs.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.sourcelink.json
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/refint/TCP.dll
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.pdb
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/TCP.genruntimeconfig.cache
+/home/quidon/Code/Cydn/Some-C-Sharp/TCP/obj/Debug/net10.0/ref/TCP.dll

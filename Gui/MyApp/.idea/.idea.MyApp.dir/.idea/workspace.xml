@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a2b18dc4-5370-4ce3-8ba9-250defdcc60e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/bin/Debug/net10.0/dungeon-crawler.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/dungeon-crawler.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/ref/dungeon-crawler.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/ref/dungeon-crawler.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/refint/dungeon-crawler.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../../Console/Junior-Project/dungeon-crawler/obj/Debug/net10.0/refint/dungeon-crawler.dll" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="3LdpoVTMA631PBPc2KNH5reW4ZG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "Txt-Based-Dungoen-Crawler-Unity-Like",
+    "last_opened_file_path": "/home/quidon/Code/Cydn/Game/C#/Unity/Shooter/My project (1)"
+  }
+}]]></component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2b18dc4-5370-4ce3-8ba9-250defdcc60e" name="Changes" comment="" />
+      <created>1793793983742</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1793793983742</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+</project>
