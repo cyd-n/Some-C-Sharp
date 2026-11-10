@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Net;
+using System.Net.Mime;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -53,7 +55,10 @@ public class SimpleServer
                 Console.WriteLine("Received: " + message);
                 
                 string[] coreData = message.Split(':');
-                if (coreData[0] == "101") { // 101: means login in 
+                
+                if (coreData[0] == "009") { // 009: version
+                    MessageToClient(_client, $"Version: {version}");  
+                } else if (coreData[0] == "101") { // 101: means login in 
                     string[] data = coreData[1].Split('$');
 
                     if(float.Parse(data[0]) == version) {
@@ -61,6 +66,11 @@ public class SimpleServer
                     } else {
                         MessageToClient(_client, "Error: You have the wrong version!");  
                     }
+                } else if (coreData[0] == "991") { // commments
+                    Console.WriteLine("DEBUG: " + coreData[1]);
+                    KickClient(coreData[1].TrimStart());
+                } else if (coreData[0] == "992") { // commments
+                    BanClient(coreData[1].TrimStart());
                 }
             }
         } catch (Exception ex) {
@@ -83,28 +93,53 @@ public class SimpleServer
         }
     }
     
-    private void StopClient(Client _client) {
+    private void StopClient(Client _client, string _message = "Client disconnected.") {
+        MessageToClient(_client, _message);
         _client.baseClient.Close();
         clients.Remove(_client);
-        Console.WriteLine("Client disconnected.");
     }
     
     private void LoginClient(Client _client, string _data) {
-        NetworkStream stream = _client.baseClient.GetStream();
-        
-        byte[] binaryData = Convert.FromBase64String(_data);
-        string decodedString = System.Text.Encoding.UTF8.GetString(binaryData);
-        
-        // auth for acount later.
-        string[] data = decodedString.Split(':');
-        
-        _client.isLogin = true;
-        _client.name = data[0];
-        
-        byte[] response = Encoding.UTF8.GetBytes($"Welcome {_client.name}");
-        stream.Write(response, 0, response.Length);
+        if (!_client.isBanned) {
+            NetworkStream stream = _client.baseClient.GetStream();
+
+            byte[] binaryData = Convert.FromBase64String(_data);
+            string decodedString = System.Text.Encoding.UTF8.GetString(binaryData);
+
+            // auth for acount later.
+            string[] data = decodedString.Split(':');
+
+            _client.isLogin = true;
+            _client.name = data[0];
+
+            byte[] response = Encoding.UTF8.GetBytes($"Welcome {_client.name}");
+            stream.Write(response, 0, response.Length);
+        }
     }
 
+    private void KickClient(string _name, Client _client = null, string _message = "You are kicked") {
+        if (_client == null) {
+            foreach (var user in clients) {
+                Console.WriteLine($"{_name} == {user.name}");
+                if (user.name == _name) {
+                    Console.WriteLine($"truee");
+                    StopClient(user, _message);
+                    return;
+                }
+            }
+        } else {
+            StopClient(_client, _message);
+        }
+    }
+
+    private void BanClient(string _name) {
+        foreach (var user in clients) {
+            if (user.name == _name) {
+                user.isBanned = true;
+                KickClient("",user, "You are Banned");
+            }
+        }
+    }
 }
 
 class Program
@@ -118,7 +153,6 @@ class Program
 
 /*
  Server status -	Track whether the server is running	 - Easy
-   Login status - Know whether a client has authenticated -	Easy
    Username validation	Prevent empty or duplicate usernames -	Easy
    Server messages	Send different response codes -	Easy
    Connection limits	Limit how many clients can connect -	Easy
@@ -126,4 +160,6 @@ class Program
    Ping system	Measure client connection latency -	Medium
    Server commands	Commands such as /clients and /status -	Medium
    Kick client	Disconnect a selected client  -  Medium
+   Dup login failure
+   
 */
