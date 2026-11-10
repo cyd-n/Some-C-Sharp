@@ -5,8 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-public class SimpleServer
-{
+public class SimpleServer {
     private TcpListener listener;
     private List<TcpClient> clients = new List<TcpClient>(); // Keeps track of connected clients
 
@@ -50,10 +49,11 @@ public class SimpleServer
                 if (coreData[0] == "101") { // 101: means login in 
                     string[] data = coreData[1].Split('$');
 
-                    if(float.Parse(data[0]) >= version) {
+                    if(float.Parse(data[0]) == version) {
                         LoginClient(_client, data[2]);
+                    } else {
+                        MessageToClient(_client, "Error: You have the wrong version!");  
                     }
-                    
                 }
             }
         } catch (Exception ex) {
@@ -105,3 +105,16 @@ class Program
         server.Start(5454); // Choose your port, any port!
     }
 };
+
+/*
+ Server status	Track whether the server is running	Easy
+   Client identification	Give every connection a unique ID	Easy
+   Login status	Know whether a client has authenticated	Easy
+   Username validation	Prevent empty or duplicate usernames	Easy
+   Server messages	Send different response codes	Easy
+   Connection limits	Limit how many clients can connect	Easy
+   Server uptime	Track how long the server has been running	Easy
+   Ping system	Measure client connection latency	Medium
+   Server commands	Commands such as /clients and /status	Medium
+   Kick client	Disconnect a selected client	Medium
+*/
